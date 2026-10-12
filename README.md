@@ -38,7 +38,7 @@ Publishing requires a normal authenticated Git checkout. Agents do not receive c
 
 `.github/workflows/research.yml` runs one short, bounded 432-trial replication campaign daily at **11:23 UTC**, then updates the public report and deploys Pages. It can also be started from GitHub Actions using **Run workflow**. It uses a standard public-repository runner and no paid model API. The run is limited to ten minutes; it is not a permanently running cloud laboratory.
 
-Each workflow run uses a disjoint seed block. Previous reports remain in Git history. Complete raw records are uploaded as workflow artifacts with **90-day retention**; download important archives before they expire. Source changes produce a different campaign identity. Daily results are repeat tests of the fixed protocol, not new hypotheses selected by an AI scientist.
+Each workflow run uses a disjoint seed block. Previous reports remain in Git history. Complete raw records, matching source, and the protocol are packaged as **versioned GitHub Releases**, so they do not depend on temporary workflow artifact retention. Download important archives for an independent backup. Source changes produce a different campaign identity. Daily results are repeat tests of the fixed protocol, not new hypotheses selected by an AI scientist.
 
 GitHub schedules may be delayed and can be disabled after prolonged repository inactivity. See [GitHub scheduling documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule). No claim of guaranteed uninterrupted hosting or execution is made.
 
@@ -55,7 +55,7 @@ Pages uses **GitHub Actions** as its publishing source. The deployment workflow 
 | Immutable campaign protocol and summary | `research/campaigns/` | On the originating computer |
 | Consistent ledger snapshot | `research/campaign-*.sqlite` | On the originating computer |
 | Browser experiments | Browser IndexedDB | Subject to browser storage clearing; export to retain |
-| Scheduled campaign raw data | GitHub Actions artifact | 90 days |
+| Scheduled campaign raw data | GitHub Releases | Versioned downloadable archive |
 
 The local ledger rejects record updates and deletions through database triggers. This is an append-only application design, not a cryptographic guarantee against a person with filesystem access. Raw files have SHA-256 checksums recorded in the ledger. Back up the complete `research/` directory independently; copying a database on the same disk is not an off-device backup.
 
