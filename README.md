@@ -1,76 +1,60 @@
-# AI Evolution
+# AI Evolution — one persistent world
 
-A computational ecology laboratory for studying inherited information, adaptation, and population dynamics. Created for Blake A. Myers.
+**Watch:** https://prototypeversions.github.io/AI_Evolution/
 
-**Open the lab:** https://prototypeversions.github.io/AI_Evolution/
+Continuum 001 is a single saved digital ecology. Four populations learn, reproduce, inherit memories and neural policies, migrate, and sometimes lose lineages. Every hourly continuation starts from the preceding checkpoint. The website is a public observatory: visitors can inspect and replay, but cannot modify the world.
 
-The website contains an interactive world, agent inspection, ancestry, deterministic replay, controlled browser experiments, measured research results, and a research ledger. It uses baseline learning algorithms. No LLM, model API key, or paid service is required.
+## What runs automatically
 
-## Start here
+`Continue the persistent world` resumes the population for 240 more ticks at minute 17 of each hour (UTC). It archives all events and before/after checkpoints, commits the new state and observations together, and publishes the website. The computer and browser can be off. GitHub can delay or disable scheduled jobs; the site displays the actual checkpoint time. This is continuous state across scheduled computations, not a constantly running server.
 
-1. Open **Live world** and press **Run world**. At tick 120, every habitat changes which action succeeds most often. Select an agent to inspect its learned estimates and ancestors.
-2. Use **Configure world** to compare inheritance modes, stable environments, and optional inherited policy variation. These are exploration runs.
-3. Open **Experiments** for the published 432-trial campaign or run 48 fresh exploratory trials in your browser.
-4. Open **Research ledger** to inspect the hypothesis, methods, uncertainty, source hash, and exact trial configurations. Replay an underlying trial or download the record.
+There is no fixed terminal tick or automatic reset. Local populations may die out and later be recolonized. Global extinction remains an outcome. The first revision's independent comparison experiments are preserved separately and now run only on explicit manual dispatch.
 
-## Run locally
+## What can evolve
 
-Requires **Node.js 24**, with no npm dependencies to install. On this Mac, `Start-Lab.command` also supports the Node runtime bundled with ChatGPT if present. From a terminal:
+- Learned action estimates and their inheritance.
+- Exploration, learning rate, neighbor-learning and migration propensities.
+- Neural-policy connections, plus insertion and deletion of units at birth.
+- Population distributions, lineage survival and information-transfer patterns.
+
+The current budget is 144 locations and at most 24 neural units per agent. Organisms have three resource actions and defined movement/learning mechanisms. No LLM controls the organisms. These limits can be changed only through an explicit model revision. The goal is to investigate increasingly rich evolution; this version does not establish unlimited complexity or intelligence.
+
+## GPT direction
+
+The model adapter is implemented but **disconnected by default**. The world runs without API calls. The research-director page labels this state explicitly.
+
+To activate later, first choose a model and spending budget, then configure repository secret `OPENAI_API_KEY` and repository variables `OPENAI_MODEL` and `DIRECTOR_ENABLED=true`. Keys never belong in the public website. By default the director can only observe and record predictions. `DIRECTOR_ALLOW_INTERVENTIONS=true` additionally permits one limited habitat change under timing/population checks. It cannot edit code, create organisms, reset worlds, or contact devices. Requests, responses, usage and applied/rejected decisions are archived. The daily request/token limits are not a guaranteed dollar cap, especially after failed-job retries. No paid model request was made in development.
+
+Read the exact policy, limits and setup in [the persistent-world protocol](docs/PERSISTENT_WORLD.md).
+
+## Records
+
+| Record | Location |
+| --- | --- |
+| Authoritative current state | `data/world-state.json` |
+| Public observations and recent playback | `data/world.json` |
+| Full segment traces, checkpoints, model decisions and source | [GitHub Releases](https://github.com/PrototypeVersions/AI_Evolution/releases) |
+| Accepted checkpoint/report history | Git commits on `main` |
+| Earlier controlled baseline results | `data/published.json` and existing campaign releases |
+
+Each segment records its parent checkpoint hash, resulting hash and source hash. The runner refuses missing/corrupt checkpoints or an unexpected source revision. A release created before a failed Git push may be unaccepted; the committed public report identifies the accepted chain. The browser shows a bounded recent window; complete older data remains in its archives. Keep independent downloads of important records.
+
+## Owner-operated commands
+
+Requires Node.js 24. There are no npm dependencies.
 
 ```sh
-git clone https://github.com/PrototypeVersions/AI_Evolution.git
-cd AI_Evolution
-npm start
+npm start                     # read-only local observatory on 127.0.0.1:4173
+npm test                      # baseline and continuity/integrity checks
+npm run continue-world        # advances the checked-out world; never a public control
 ```
 
-Open http://127.0.0.1:4173. The local dashboard adds a **Run full protocol** button. Closing the browser does not stop the server, but computer sleep or exiting the server stops ongoing computation. Completed trials resume when the same campaign is restarted. The live exploration world is in browser memory until exported.
+The initial genesis has already been created and committed. Do not run `--genesis` again; it rejects an existing world. For cloud continuation use [GitHub Actions](https://github.com/PrototypeVersions/AI_Evolution/actions/workflows/world.yml). The workflow publishes automatically. Do not independently advance and push a local copy while the cloud workflow is running: Git history must have one accepted successor to each checkpoint. Normal pushes reject a changed remote head.
 
-```sh
-npm test
-npm run research                 # 24 exploration + 48 confirmation seeds
-node scripts/research.mjs --campaign 1  # new, disjoint seed block
-npm run publish-results          # commit and push the new derived report
-```
+## Development and research direction
 
-Publishing requires a normal authenticated Git checkout. Agents do not receive credentials. The publisher only stages and commits `data/published.json`; it does not force-push.
+See [the full protocol](docs/PERSISTENT_WORLD.md) for exact rules, source-migration requirements, extinction behavior, finite resource budgets, optional GPT policy and eventual device distribution. Agents have no network, filesystem, shell, credentials or arbitrary code execution. Future cross-device migration would transfer validated state between explicitly enrolled hosts, not propagate software to other computers.
 
-## Automatic reporting
+Promising next stages include richer task ecologies, evolvable memory and policy languages, complementary skills, resource exchange, and carefully defined measures of novelty and capability. Separate populations can become different; whether they develop cooperation, dependence or new capabilities must be measured rather than inferred from appearance.
 
-`.github/workflows/research.yml` runs one short, bounded 432-trial replication campaign daily at **11:23 UTC**, then updates the public report and deploys Pages. It can also be started from GitHub Actions using **Run workflow**. It uses a standard public-repository runner and no paid model API. The run is limited to ten minutes; it is not a permanently running cloud laboratory.
-
-Each workflow run uses a disjoint seed block. Previous reports remain in Git history. Complete raw records, matching source, and the protocol are packaged as **versioned GitHub Releases**, so they do not depend on temporary workflow artifact retention. Download important archives for an independent backup. Source changes produce a different campaign identity. Daily results are repeat tests of the fixed protocol, not new hypotheses selected by an AI scientist.
-
-GitHub schedules may be delayed and can be disabled after prolonged repository inactivity. See [GitHub scheduling documentation](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule). No claim of guaranteed uninterrupted hosting or execution is made.
-
-Pages uses **GitHub Actions** as its publishing source. The deployment workflow tests the engine and publishes only `index.html`, `assets`, `src`, `docs`, and `data`. The raw database is not included in the website.
-
-## Evidence and storage
-
-| Record | Location | Retention |
-| --- | --- | --- |
-| Source, methods, fixed protocol | Git repository | Version history |
-| Published summaries and all per-trial outcomes | `data/published.json` | Git history after publishing |
-| Local trial manifests and results | `research/ledger.sqlite` | On the originating computer |
-| Complete local action traces and state | `research/runs/*.json.gz` | On the originating computer |
-| Immutable campaign protocol and summary | `research/campaigns/` | On the originating computer |
-| Consistent ledger snapshot | `research/campaign-*.sqlite` | On the originating computer |
-| Browser experiments | Browser IndexedDB | Subject to browser storage clearing; export to retain |
-| Scheduled campaign raw data | GitHub Releases | Versioned downloadable archive |
-
-The local ledger rejects record updates and deletions through database triggers. This is an append-only application design, not a cryptographic guarantee against a person with filesystem access. Raw files have SHA-256 checksums recorded in the ledger. Back up the complete `research/` directory independently; copying a database on the same disk is not an off-device backup.
-
-## First result
-
-The initial campaign found a smaller faithful-memory benefit after an abrupt environmental change than in stable worlds. The independent 48-seed confirmation block estimated a **−15.1 percentage-point interaction**, with a paired bootstrap interval of approximately **−16.2 to −13.9 points**. These numbers describe this specific artificial model. They do not establish a result about actual LLMs, nor a novel scientific discovery.
-
-Read [Methods](docs/METHODS.md), [Research plan](docs/RESEARCH_PLAN.md), and [Pilot calibration](docs/PILOT.md) before interpreting the findings.
-
-## Containment
-
-The engine is a pure JavaScript state machine. Its agents can select resource actions, move to simulated neighbors, and instantiate simulated descendants. They cannot access shell commands, files, network sockets, external devices, or API credentials. The local server binds to loopback and exposes only fixed research controls. The human-owned publisher and GitHub workflow perform reporting outside the agent world.
-
-## Scope of version 0.1
-
-Implemented: repeatable baseline ecology, learning, memory treatments, optional policy mutation, controlled batches, seed-level statistics, research provenance, archive export, replay, daily replication, and Pages publishing.
-
-Future work: richer environments, hypothesis-driven interventions on apparent roles, comparisons with genuine LLM agents, adaptive experiment selection, and a separately permissioned AI research assistant. No current interface is a placeholder for an undisclosed model connection.
+The previous baseline methods and pilot remain in `docs/METHODS.md` and `docs/PILOT.md`. They describe the earlier comparison experiment, not this persistent-world protocol.

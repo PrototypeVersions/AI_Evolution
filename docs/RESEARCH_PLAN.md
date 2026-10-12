@@ -1,4 +1,15 @@
-# Research plan
+# Research plan — updated direction
+
+The primary project is now **one persistent world**, documented in [PERSISTENT_WORLD.md](PERSISTENT_WORLD.md). The public website is an observatory, and continuation resumes the same population. The controlled comparison plan below is retained as historical context and a source of future side experiments, not the main daily process.
+
+## Open-ended evolution research direction
+
+The present ecology supports structural neural-policy mutations within a finite budget. A subsequent recorded revision could introduce evolvable memory allocation, compositional policy programs, complementary resource tasks and new interaction channels. Complexity should be measured in several ways and tested against capability, transfer and energetic cost. Neither larger genomes nor more generations alone demonstrate increasing intelligence.
+
+A GPT director may record predictions and, when explicitly enabled, choose limited interventions. Broader autonomous research design and LLM organisms require additional implementation, model access, cost limits and evaluation. Distributed hosts would require explicit enrollment, validated state transfer and unique ownership of each organism.
+
+## Earlier baseline plan (preserved)
+
 
 ## Current milestone
 

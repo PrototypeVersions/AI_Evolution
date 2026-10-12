@@ -1,7 +1,5 @@
-name: Daily research and report
+name: Archived baseline comparison (manual only)
 on:
-  schedule:
-    - cron: '23 11 * * *'
   workflow_dispatch:
 permissions:
   contents: write
