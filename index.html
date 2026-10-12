@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3f4ef"><meta name="description" content="A reproducible computational ecology laboratory studying inheritance, adaptation, and population dynamics.">
+  <title>AI Evolution — Computational Ecology Lab</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%231c493f'/%3E%3Ccircle cx='20' cy='20' r='11' fill='none' stroke='%23bbf090' stroke-width='2'/%3E%3Ccircle cx='20' cy='20' r='5' fill='%23bbf090'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+<aside class="rail">
+  <a class="brand" href="#world" aria-label="AI Evolution home"><span class="brand-icon">◎</span><span>AI EVOLUTION<small>COMPUTATIONAL ECOLOGY LAB</small></span></a>
+  <div class="rail-label">OBSERVATORY</div>
+  <nav aria-label="Main navigation">
+    <a href="#world" class="nav-link active" data-view="world"><span>◉</span>Live world</a>
+    <a href="#experiments" class="nav-link" data-view="experiments"><span>⌘</span>Experiments</a>
+    <a href="#ledger" class="nav-link" data-view="ledger"><span>▤</span>Research ledger</a>
+    <a href="#methods" class="nav-link" data-view="methods"><span>⊞</span>Methods &amp; model</a>
+  </nav>
+  <div class="rail-bottom"><span class="tiny-dot"></span> BASELINE AGENTS <p>Learning policies in a contained world. No language model connected.</p><a href="https://github.com/PrototypeVersions/AI_Evolution" target="_blank" rel="noreferrer">View source ↗</a><small>v0.1.0 · Blake A. Myers</small></div>
+</aside>
+<main>
+  <header class="topbar"><div><span class="tiny-dot"></span> RESEARCH WORKSPACE <span class="slash">/</span> <span id="page-label">LIVE WORLD</span></div><span id="runtime-badge" class="pill">Browser session</span></header>
+  <section id="world-view" class="view active">
+    <div class="page-heading"><div><div class="eyebrow">01 / OBSERVE &amp; EXPLORE</div><h1>Adaptation in motion<span>.</span></h1><p>One world. Many lineages. What survives when the rules change?</p></div><button id="configure" class="button secondary">⚙ Configure world</button></div>
+    <div class="metric-grid" id="world-metrics"></div>
+    <div class="world-layout">
+      <section class="world-panel" aria-label="Interactive ecology simulation">
+        <div class="world-heading"><div><span class="panel-kicker">WORLD <span id="world-seed">1729</span></span><h2>Computational habitat</h2></div><span id="world-status" class="dark-pill">● Paused</span></div>
+        <div class="canvas-wrap"><canvas id="world-canvas" aria-label="Locations and agents. Select an agent below for an accessible inspector."></canvas><div class="world-note"><span id="environment-label">Environment stable</span><small id="shift-label">Change scheduled at tick 120</small></div><div class="world-key"><span><i class="c1"></i>Habitat 1</span><span><i class="c2"></i>Habitat 2</span><span><i class="c3"></i>Habitat 3</span><span class="dim">Ring = living agent</span></div></div>
+        <div class="transport"><button id="play" class="button primary">▶ Run world</button><button id="step" class="icon-button" title="Advance one tick" aria-label="Advance one tick">▷|</button><button id="reset" class="icon-button" title="Restart the same world" aria-label="Restart the same world">↺</button><div class="tick-display">TICK <strong id="tick-label">0</strong><span id="horizon-label">/ 240</span></div><label class="speed-label">Speed <select id="speed"><option value="2">2×</option><option value="8" selected>8×</option><option value="24">24×</option><option value="60">60×</option></select></label></div>
+        <div class="replay"><label for="timeline">Replay</label><input id="timeline" type="range" min="0" max="240" value="0"><span id="replay-label">Live state</span></div>
+      </section>
+      <aside class="inspector card"><div class="section-title"><h2>Agent inspector</h2><span class="subtle">LIVE</span></div><label class="sr-only" for="agent-select">Select agent</label><select id="agent-select"></select><div id="agent-detail"></div></aside>
+    </div>
+    <div class="lower-grid"><section class="card population-card"><div class="section-title"><div><span class="eyebrow">POPULATION HISTORY</span><h2>Persistence over time</h2></div><span id="population-legend" class="chart-key">● Living agents</span></div><svg id="population-chart" viewBox="0 0 650 180" role="img" aria-label="Population by simulation tick"></svg><p class="footnote">The dashed line marks the scheduled environmental change.</p></section><section class="card events-card"><div class="section-title"><h2>Event stream</h2><label><input id="all-events" type="checkbox"> All actions</label></div><div id="events" class="events" aria-live="off"></div></section></div>
+    <div class="export-row"><span>Exploration runs are separate from the published research record.</span><div><button id="export-world" class="text-button">↓ Export full run</button><button id="import-world" class="text-button">↑ Replay a saved run</button><input id="import-file" type="file" accept="application/json,.json" hidden></div></div>
+  </section>
+  <section id="experiments-view" class="view">
+    <div class="page-heading"><div><div class="eyebrow">02 / COMPARE &amp; TEST</div><h1>Put inheritance to the test<span>.</span></h1><p>Matched worlds. One changed condition. Evidence you can inspect.</p></div></div>
+    <section class="question-card"><span class="eyebrow">FIRST RESEARCH QUESTION</span><h2>Does inherited knowledge help—or hinder—adaptation after change?</h2><p>Compare no inheritance, faithful memory, and shuffled memory in stable and changing environments. Every treatment starts with the same world for each seed.</p><div class="protocol-tags"><span>81 locations</span><span>12 founders</span><span>240 ticks</span><span>Change at tick 120</span><span>Mutation off</span></div></section>
+    <div class="research-controls card"><div><h2>Run an exploratory batch</h2><p>8 independent seeds × 6 conditions. Runs in your browser; complete traces are saved on this device when storage is available.</p></div><div><button id="run-batch" class="button primary">▶ Run 48 trials</button><button id="cancel-batch" class="button secondary" hidden>Stop batch</button></div><div id="batch-progress" class="progress-area" hidden><progress id="batch-bar" max="48" value="0"></progress><span id="batch-status"></span></div></div>
+    <div id="local-controls" class="card research-controls" hidden><div><h2>Persistent research runner</h2><p>Runs the complete 432-trial protocol. Each trial is checkpointed to a local ledger, with compressed action traces and a database snapshot.</p></div><div><button id="start-research" class="button primary">Run full protocol</button><button id="stop-research" class="button secondary" hidden>Pause research</button></div><p id="local-status" class="footnote"></p></div>
+    <div class="results-heading"><h2>Experimental results</h2><div class="segmented"><button id="show-published" class="selected">Published record</button><button id="show-browser">Your browser batch</button></div></div>
+    <div id="results-panel"></div>
+  </section>
+  <section id="ledger-view" class="view">
+    <div class="page-heading"><div><div class="eyebrow">03 / PRESERVE &amp; REPRODUCE</div><h1>A record, not just a result<span>.</span></h1><p>Trace each claim back to its protocol, independent runs, and source version.</p></div><button id="export-report" class="button secondary">↓ Export research record</button></div>
+    <div id="ledger-content"></div>
+    <section class="card archive-card"><h2>Your browser archive</h2><p>Experimental action traces are stored in this browser’s IndexedDB. Browser storage can be cleared; download an archive to keep an independent copy.</p><div class="archive-actions"><button id="export-browser" class="button secondary">↓ Download browser batch &amp; traces</button><span id="archive-status" class="subtle"></span></div></section>
+  </section>
+  <section id="methods-view" class="view">
+    <div class="page-heading"><div><div class="eyebrow">04 / UNDERSTAND THE MODEL</div><h1>Simple rules. Explicit limits<span>.</span></h1><p>A transparent baseline for questions about learning, inheritance, and organization.</p></div></div>
+    <div class="methods-grid">
+      <article class="card"><span class="method-number">01</span><h2>The world</h2><p>A grid of renewable locations has three habitat types. Each habitat favors one of three harvesting actions. Agents see their local habitat and resources, but must learn which action works.</p><p>At the scheduled change, each habitat favors a new action. The population keeps its existing memories.</p></article>
+      <article class="card"><span class="method-number">02</span><h2>The agent</h2><p>A small learning policy tracks the success of each action in each habitat. It usually chooses its best estimate and sometimes explores. Success earns energy; activity costs energy.</p><p>Agents reproduce into vacant neighboring locations when they have enough energy. They die when energy runs out or after 50 ticks.</p></article>
+      <article class="card"><span class="method-number">03</span><h2>What is inherited?</h2><p>Faithful descendants receive a copy of their parent’s learned estimates. The no-inheritance control starts with neutral estimates. Shuffled inheritance preserves the entries but permutes their action labels.</p><p>Optional policy mutation is available in the live world. It is disabled in the first controlled research protocol.</p></article>
+      <article class="card"><span class="method-number">04</span><h2>What does this establish?</h2><p>Results describe this artificial ecology. Agents are baseline learning algorithms, not language models. A pattern here does not establish a fact about real LLMs, biological evolution, or real-world replication.</p><p>Meaningful specialization and open-ended complexity remain research questions; this version does not claim to have demonstrated them.</p></article>
+    </div>
+    <section class="card methods-detail"><h2>The first protocol</h2><p>The primary outcome is the average fraction of occupied locations during ticks 120–239. Extinct runs contribute zero for the remaining horizon. The primary contrast asks whether the faithful-memory advantage over no inheritance becomes smaller after environmental change.</p><p>24 exploration seeds and 48 separate confirmation seeds each generate all six conditions. Uncertainty uses 2,000 paired bootstrap resamples of independent seeds. Secondary comparisons are descriptive. Confirmation applies only within this model and protocol.</p><p>World configurations, source hashes, raw action logs, and negative results are preserved. A source change creates a new campaign identity; existing trial records are never silently updated.</p><a href="docs/METHODS.md" target="_blank" class="text-button">Read the complete methods ↗</a><a href="docs/RESEARCH_PLAN.md" target="_blank" class="text-button">Research roadmap ↗</a></section>
+  </section>
+  <footer>AI EVOLUTION <span>Computational ecology · Reproducible by design</span><a href="https://github.com/PrototypeVersions/AI_Evolution" target="_blank" rel="noreferrer">GitHub ↗</a></footer>
+</main>
+<dialog id="settings-dialog"><form id="settings-form"><div class="section-title"><h2>Configure a world</h2><button type="button" id="close-settings" class="icon-button" aria-label="Close settings">×</button></div><p>Changing settings starts a new exploration run.</p><div class="form-grid"><label>Random seed<input name="seed" type="number" min="0" max="2147483647" required></label><label>Locations<select name="nodes"><option value="36">36 · small</option><option value="81">81 · standard</option><option value="144">144 · large</option></select></label><label>Inheritance<select name="inheritance"><option value="faithful">Faithful memory</option><option value="none">No inheritance</option><option value="scrambled">Shuffled memory</option></select></label><label>Change at tick<input name="shiftAt" type="number" min="0" max="239" required><small>0 keeps the environment stable.</small></label><label>Exploration rate<input name="exploration" type="number" min="0.01" max="0.8" step="0.01" required></label><label>Learning rate<input name="learningRate" type="number" min="0.01" max="0.8" step="0.01" required></label></div><label class="check-label"><input name="mutation" type="checkbox"> Allow inherited policy variation</label><p class="footnote">Varies exploration and learning rates at birth. These are programmed mutation rules, not self-modifying software.</p><button class="button primary" type="submit">Create world</button></form></dialog>
+<div id="toast" role="status" hidden></div>
+<script type="module" src="assets/app.mjs"></script>
+</body></html>

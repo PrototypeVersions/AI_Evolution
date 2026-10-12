@@ -1,0 +1,11 @@
+import {readFile,writeFile,mkdir} from 'node:fs/promises';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import {spawnSync} from 'node:child_process';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const report=JSON.parse(await readFile(path.join(root,'data/published.json'),'utf8'));
+const out=path.resolve(process.argv[2]||path.join(root,'research',`${report.id}-archive.tar.gz`));
+await mkdir(path.dirname(out),{recursive:true});
+const args=['-czf',out,'--exclude=*.tar.gz','--exclude=*.tmp','--exclude=*-wal','--exclude=*-shm','research','src','scripts/research.mjs','docs','data/published.json'];
+const p=spawnSync('tar',args,{cwd:root,stdio:'inherit'});if(p.status!==0)process.exit(p.status||1);
+console.log(out);
