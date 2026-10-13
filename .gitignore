@@ -6,3 +6,9 @@ node_modules/
 !.env.example
 data/.world.lock
 data/*.tmp
+
+work/
+data/inheritance/.lock
+data/inheritance/*.tmp
+data/symbiosis/.lock
+data/symbiosis/*.tmp

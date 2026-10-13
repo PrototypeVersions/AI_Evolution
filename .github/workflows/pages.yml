@@ -30,7 +30,7 @@ jobs:
       - name: Package public files only
         run: |
           mkdir -p _site
-          cp index.html continuum.html _site/
+          cp index.html continuum.html symbiosis.html _site/
           cp -R assets src data docs _site/
           touch _site/.nojekyll
       - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b

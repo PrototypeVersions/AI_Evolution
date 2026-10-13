@@ -1,38 +1,42 @@
-# Symbiosis — AI Evolution Observatory
+# Inheritance — AI Evolution Observatory
 
-[Open the observatory](https://prototypeversions.github.io/AI_Evolution/)
+A public, read-only study of learned inheritance under an accounted neural-computation budget.
 
-One persistent digital ecology, continued hourly in the cloud. Visitors can observe organisms, inspect their inherited decision circuits, replay recorded states and follow founder lineages. They cannot alter the world.
+**Live:** https://prototypeversions.github.io/AI_Evolution/
 
-Symbiosis 002 introduces two-resource economies, bilateral exchange offers, shared structures that outlive their builders, raids and defenses. Programs are acyclic circuits whose units can be added, deleted, rewired and retuned at reproduction. Learned action values and inherited memory also influence decisions. The world is bounded; circuit growth and action variety are not proof of intelligence or open-ended evolution.
+## Study 003, protocol 1
 
-## Run and inspect
+Three paired replicates compare an inherited population, a population with freshly initialized offspring, and one continuously trained learner. All models are real 12 → 24 → 8 neural networks. They learn four bitstring transformations through backpropagation; inherited descendants copy and perturb learned weights.
 
-Requires Node 24 or newer, with no package dependencies.
+Each arm receives the same example stream and dense neural MAC budget. Reporting uses input strings withheld from training and parent selection. A separate composition probe and short warm-start assay are explicitly labeled exploratory. This is a bounded first study, not an LLM or a demonstration of unlimited intelligence.
+
+Read [the protocol](docs/INHERITANCE.md) and [the development pilot](docs/INHERITANCE_PILOT.md). The pilot is not official history. Evolution is allowed to lose.
+
+## Operation
+
+- `Continue Inheritance 003` resumes the saved checkpoint for 12 rounds hourly at minute 17 UTC. GitHub may delay scheduled runs.
+- The chapter stops at round 384, preserves its weights and records, and waits for a subsequent protocol. It does not automatically reset.
+- Every segment is archived in a GitHub Release before the checkpoint and public report are committed together. Accepted reports link the releases belonging to their checkpoint chain.
+- Visitors can inspect history and weights; they cannot start, alter or reset the study. Closing the browser has no effect on the worker.
+- No paid API, external AI director, credentials in browser code, or third-party frontend dependency is used.
+
+## Local use
+
+Node 24 or newer; no package installation required.
 
 ```sh
-npm start                     # read-only local observatory at localhost:4173
-npm test                      # deterministic continuation, ecology, accounting and integrity
-npm run advance               # advance checked-out Symbiosis checkpoint by 1,000 ticks
+npm test
+npm start
 ```
 
-The scheduled [Continue Symbiosis 002 workflow](https://github.com/PrototypeVersions/AI_Evolution/actions/workflows/symbiosis.yml) advances 1,000 ticks hourly at minute 37 UTC and deploys automatically. A manual dispatch allows 1–5,000 ticks. GitHub schedules may be delayed; the website displays the actual checkpoint time. Your computer and browser can be off. Do not advance and push an independent local copy concurrently with the cloud worker.
+`npm run advance` resumes `data/inheritance/checkpoint.json` and writes a local archive. Never run it against an accepted checkout unless intending a local continuation. Local advances are not official cloud segments. `npm run pilot-inheritance` runs separate development seeds and writes to ignored `work/`.
 
-Every accepted segment has a release with before/after checkpoints, complete compressed events, sampled measurements, source, protocol and checksums. The release uploads before the checkpoint is committed. A failed commit can leave an orphan release; only manifests linked by the accepted checkpoint history are official. Re-running an already accepted workflow ID does not advance the world twice. Global extinction is preserved and never automatically reseeded. Engine changes stop the runner until an explicit migration or distinct experiment is prepared.
+The engine, runner and protocol are source-hashed. Changing them requires a separate protocol/migration; a source mismatch stops advancement. Genesis is an explicit one-time command and refuses to overwrite existing state.
 
-| Record | Location |
-| --- | --- |
-| Authoritative world | `data/symbiosis/checkpoint.json` |
-| Public observations | `data/symbiosis/observatory.json` |
-| Exact mechanisms and limits | `docs/SYMBIOSIS.md` |
-| Complete segment archives | GitHub Releases |
-| Original world | `continuum.html`, `data/world-state.json`, `data/world.json` |
-| Earlier controlled baseline | `docs/METHODS.md`, `docs/PILOT.md`, `data/published.json` |
+## Previous experiments
 
-## AI director
+- [Symbiosis 002](symbiosis.html): artificial ecology with evolving decision circuits, archived with its schedule paused. Its source, checkpoints and published releases remain available.
+- [Continuum 001](continuum.html): original persistent world, schedule paused.
+- [Original bounded research plan](docs/RESEARCH_PLAN.md) and [methods](docs/METHODS.md): historical experiments and preserved results.
 
-The new director is advisory and disconnected by default. It can review measurements and propose falsifiable studies, but cannot alter this world or execute studies. To connect it later, choose a model/budget and set secret `OPENAI_API_KEY`, variable `OPENAI_MODEL`, and variable `SYMBIOSIS_DIRECTOR_ENABLED=true`. One review is attempted per UTC day in the accepted chain; uncommitted retries may make extra requests. Usage is archived and API billing is separate. No paid model calls were made during development. The older director flags apply only to the archived first experiment.
-
-## Experimental continuity
-
-Symbiosis has a new identity and genesis. Continuum 001 was not silently upgraded or reset: its original code, checkpoints and releases are preserved, and its hourly schedule is paused. Its manual workflow is retained. The earlier controlled comparison is also preserved and manual only. See the protocol for designed starting abilities, exploration, mutation bias, observation limits and the distinction between ancestry and species.
+These are separate experiments. Their organisms are not ancestors of the neural models in Study 003. Old workflows remain available for explicit manual archival work; only Inheritance has a scheduled continuation.

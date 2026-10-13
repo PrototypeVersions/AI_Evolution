@@ -1,6 +1,6 @@
 {
   "name": "ai-evolution-lab",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -12,6 +12,8 @@
     "research": "node scripts/research.mjs",
     "publish-results": "node scripts/publish.mjs",
     "continue-world": "node scripts/continue-world.mjs",
-    "advance": "node scripts/advance-symbiosis.mjs"
+    "advance": "node scripts/advance-inheritance.mjs",
+    "advance-symbiosis": "node scripts/advance-symbiosis.mjs",
+    "pilot-inheritance": "node scripts/pilot-inheritance.mjs"
   }
 }

@@ -1,7 +1,5 @@
 name: Continue Symbiosis 002
 on:
-  schedule:
-    - cron: '37 * * * *'
   workflow_dispatch:
     inputs:
       ticks:
