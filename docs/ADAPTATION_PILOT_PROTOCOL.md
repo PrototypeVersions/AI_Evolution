@@ -60,7 +60,7 @@ Per method per round:
 - Current selection: 4×56 = 224 forward examples, 21,504 MACs.
 - Ordinary methods: 4×1,024 = 4,096 learning examples, 917,504 MACs.
 - Response methods: 4×784 = 3,136 current learning examples, 702,464 MACs; 4×3×56 = 672 probe learning examples, 150,528 MACs; 672 probe forward examples, 64,512 MACs.
-- **Total: 939,008 dense neural MACs for every method every round.** Probe methods spend 24% fewer current-task training examples; probing is not free.
+- **Total: 939,008 dense neural MACs for every method every round.** Probe methods spend 23.4375% fewer current-task training examples; probing is not free.
 - Warm-up: 512 learning examples, 114,688 MACs per method.
 - Future evaluation is a separate, identical measurement budget for every method: eight tasks, two models, 256 learning examples, four 128-example prediction checkpoints, at each of four population checkpoints. The measured copies are discarded. Current reporting reuses selection predictions.
 - Total algorithm MACs per method/world: 15,138,816. Total future measurement MACs: 6,815,744. Combined total: 21,954,560.

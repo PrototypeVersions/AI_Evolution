@@ -14,6 +14,7 @@
     "continue-world": "node scripts/continue-world.mjs",
     "advance": "node scripts/advance-inheritance.mjs",
     "advance-symbiosis": "node scripts/advance-symbiosis.mjs",
-    "pilot-inheritance": "node scripts/pilot-inheritance.mjs"
+    "pilot-inheritance": "node scripts/pilot-inheritance.mjs",
+    "pilot-adaptation": "node scripts/pilot-adaptation.mjs"
   }
 }
