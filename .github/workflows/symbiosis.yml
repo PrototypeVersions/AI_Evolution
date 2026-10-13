@@ -1,4 +1,4 @@
-name: Continue Symbiosis 002
+name: Archived Symbiosis 002 (manual only)
 on:
   workflow_dispatch:
     inputs:

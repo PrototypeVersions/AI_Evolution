@@ -1,5 +1,7 @@
 # Symbiosis 002 — protocol 1
 
+**Archive notice:** scheduled continuation was paused when Inheritance 003 launched. The rules and history below describe this separate artificial-life experiment. [Visit the current study](../index.html).
+
 This is a new experiment, not a reset or continuation of Continuum 001. Its seed is 20261013. The first experiment's accepted checkpoints, code and releases are preserved; its hourly schedule is paused. Its observatory remains at `continuum.html`. Diagnostics used seeds 101, 202 and 303 before this protocol was frozen; those runs are not part of the official history.
 
 ## Question
