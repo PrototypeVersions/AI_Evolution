@@ -4,6 +4,10 @@ A public, read-only study of learned inheritance under an accounted neural-compu
 
 **Live:** https://prototypeversions.github.io/AI_Evolution/
 
+## Completed pilot 004 — learning-response selection
+
+The eight-world, five-method [Adaptation pilot](docs/ADAPTATION_PILOT_RESULTS.md) did not pass its prewritten expansion rule. Selecting the best learning pair tied selection of individual learners in seven of eight worlds, so it did not establish a benefit from complementarity. This research direction is paused; no scheduled continuation was added. The [protocol](docs/ADAPTATION_PILOT_PROTOCOL.md) and [complete reproducibility archive](data/adaptation/pilot-records.tar.gz) remain public. Study 003 below is unchanged.
+
 ## Study 003, protocol 1
 
 Three paired replicates compare an inherited population, a population with freshly initialized offspring, and one continuously trained learner. All models are real 12 → 24 → 8 neural networks. They learn four bitstring transformations through backpropagation; inherited descendants copy and perturb learned weights.
