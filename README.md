@@ -10,7 +10,7 @@ Three paired replicates compare an inherited population, a population with fresh
 
 Each arm receives the same example stream and dense neural MAC budget. Reporting uses input strings withheld from training and parent selection. A separate composition probe and short warm-start assay are explicitly labeled exploratory. This is a bounded first study, not an LLM or a demonstration of unlimited intelligence.
 
-Read [the protocol](docs/INHERITANCE.md) and [the development pilot](docs/INHERITANCE_PILOT.md). The pilot is not official history. Evolution is allowed to lose.
+Read [the protocol](docs/INHERITANCE.md) and [the development pilot](docs/INHERITANCE_PILOT.md). See also the [measurement clarification](docs/INHERITANCE_NOTES.md). The pilot is not official history. Evolution is allowed to lose.
 
 ## Operation
 
