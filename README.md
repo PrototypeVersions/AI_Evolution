@@ -1,60 +1,38 @@
-# AI Evolution — one persistent world
+# Symbiosis — AI Evolution Observatory
 
-**Watch:** https://prototypeversions.github.io/AI_Evolution/
+[Open the observatory](https://prototypeversions.github.io/AI_Evolution/)
 
-Continuum 001 is a single saved digital ecology. Four populations learn, reproduce, inherit memories and neural policies, migrate, and sometimes lose lineages. Every hourly continuation starts from the preceding checkpoint. The website is a public observatory: visitors can inspect and replay, but cannot modify the world.
+One persistent digital ecology, continued hourly in the cloud. Visitors can observe organisms, inspect their inherited decision circuits, replay recorded states and follow founder lineages. They cannot alter the world.
 
-## What runs automatically
+Symbiosis 002 introduces two-resource economies, bilateral exchange offers, shared structures that outlive their builders, raids and defenses. Programs are acyclic circuits whose units can be added, deleted, rewired and retuned at reproduction. Learned action values and inherited memory also influence decisions. The world is bounded; circuit growth and action variety are not proof of intelligence or open-ended evolution.
 
-`Continue the persistent world` resumes the population for 240 more ticks at minute 17 of each hour (UTC). It archives all events and before/after checkpoints, commits the new state and observations together, and publishes the website. The computer and browser can be off. GitHub can delay or disable scheduled jobs; the site displays the actual checkpoint time. This is continuous state across scheduled computations, not a constantly running server.
+## Run and inspect
 
-There is no fixed terminal tick or automatic reset. Local populations may die out and later be recolonized. Global extinction remains an outcome. The first revision's independent comparison experiments are preserved separately and now run only on explicit manual dispatch.
+Requires Node 24 or newer, with no package dependencies.
 
-## What can evolve
+```sh
+npm start                     # read-only local observatory at localhost:4173
+npm test                      # deterministic continuation, ecology, accounting and integrity
+npm run advance               # advance checked-out Symbiosis checkpoint by 1,000 ticks
+```
 
-- Learned action estimates and their inheritance.
-- Exploration, learning rate, neighbor-learning and migration propensities.
-- Neural-policy connections, plus insertion and deletion of units at birth.
-- Population distributions, lineage survival and information-transfer patterns.
+The scheduled [Continue Symbiosis 002 workflow](https://github.com/PrototypeVersions/AI_Evolution/actions/workflows/symbiosis.yml) advances 1,000 ticks hourly at minute 37 UTC and deploys automatically. A manual dispatch allows 1–5,000 ticks. GitHub schedules may be delayed; the website displays the actual checkpoint time. Your computer and browser can be off. Do not advance and push an independent local copy concurrently with the cloud worker.
 
-The current budget is 144 locations and at most 24 neural units per agent. Organisms have three resource actions and defined movement/learning mechanisms. No LLM controls the organisms. These limits can be changed only through an explicit model revision. The goal is to investigate increasingly rich evolution; this version does not establish unlimited complexity or intelligence.
-
-## GPT direction
-
-The model adapter is implemented but **disconnected by default**. The world runs without API calls. The research-director page labels this state explicitly.
-
-To activate later, first choose a model and spending budget, then configure repository secret `OPENAI_API_KEY` and repository variables `OPENAI_MODEL` and `DIRECTOR_ENABLED=true`. Keys never belong in the public website. By default the director can only observe and record predictions. `DIRECTOR_ALLOW_INTERVENTIONS=true` additionally permits one limited habitat change under timing/population checks. It cannot edit code, create organisms, reset worlds, or contact devices. Requests, responses, usage and applied/rejected decisions are archived. The daily request/token limits are not a guaranteed dollar cap, especially after failed-job retries. No paid model request was made in development.
-
-Read the exact policy, limits and setup in [the persistent-world protocol](docs/PERSISTENT_WORLD.md).
-
-## Records
+Every accepted segment has a release with before/after checkpoints, complete compressed events, sampled measurements, source, protocol and checksums. The release uploads before the checkpoint is committed. A failed commit can leave an orphan release; only manifests linked by the accepted checkpoint history are official. Re-running an already accepted workflow ID does not advance the world twice. Global extinction is preserved and never automatically reseeded. Engine changes stop the runner until an explicit migration or distinct experiment is prepared.
 
 | Record | Location |
 | --- | --- |
-| Authoritative current state | `data/world-state.json` |
-| Public observations and recent playback | `data/world.json` |
-| Full segment traces, checkpoints, model decisions and source | [GitHub Releases](https://github.com/PrototypeVersions/AI_Evolution/releases) |
-| Accepted checkpoint/report history | Git commits on `main` |
-| Earlier controlled baseline results | `data/published.json` and existing campaign releases |
+| Authoritative world | `data/symbiosis/checkpoint.json` |
+| Public observations | `data/symbiosis/observatory.json` |
+| Exact mechanisms and limits | `docs/SYMBIOSIS.md` |
+| Complete segment archives | GitHub Releases |
+| Original world | `continuum.html`, `data/world-state.json`, `data/world.json` |
+| Earlier controlled baseline | `docs/METHODS.md`, `docs/PILOT.md`, `data/published.json` |
 
-Each segment records its parent checkpoint hash, resulting hash and source hash. The runner refuses missing/corrupt checkpoints or an unexpected source revision. A release created before a failed Git push may be unaccepted; the committed public report identifies the accepted chain. The browser shows a bounded recent window; complete older data remains in its archives. Keep independent downloads of important records.
+## AI director
 
-## Owner-operated commands
+The new director is advisory and disconnected by default. It can review measurements and propose falsifiable studies, but cannot alter this world or execute studies. To connect it later, choose a model/budget and set secret `OPENAI_API_KEY`, variable `OPENAI_MODEL`, and variable `SYMBIOSIS_DIRECTOR_ENABLED=true`. One review is attempted per UTC day in the accepted chain; uncommitted retries may make extra requests. Usage is archived and API billing is separate. No paid model calls were made during development. The older director flags apply only to the archived first experiment.
 
-Requires Node.js 24. There are no npm dependencies.
+## Experimental continuity
 
-```sh
-npm start                     # read-only local observatory on 127.0.0.1:4173
-npm test                      # baseline and continuity/integrity checks
-npm run continue-world        # advances the checked-out world; never a public control
-```
-
-The initial genesis has already been created and committed. Do not run `--genesis` again; it rejects an existing world. For cloud continuation use [GitHub Actions](https://github.com/PrototypeVersions/AI_Evolution/actions/workflows/world.yml). The workflow publishes automatically. Do not independently advance and push a local copy while the cloud workflow is running: Git history must have one accepted successor to each checkpoint. Normal pushes reject a changed remote head.
-
-## Development and research direction
-
-See [the full protocol](docs/PERSISTENT_WORLD.md) for exact rules, source-migration requirements, extinction behavior, finite resource budgets, optional GPT policy and eventual device distribution. Agents have no network, filesystem, shell, credentials or arbitrary code execution. Future cross-device migration would transfer validated state between explicitly enrolled hosts, not propagate software to other computers.
-
-Promising next stages include richer task ecologies, evolvable memory and policy languages, complementary skills, resource exchange, and carefully defined measures of novelty and capability. Separate populations can become different; whether they develop cooperation, dependence or new capabilities must be measured rather than inferred from appearance.
-
-The previous baseline methods and pilot remain in `docs/METHODS.md` and `docs/PILOT.md`. They describe the earlier comparison experiment, not this persistent-world protocol.
+Symbiosis has a new identity and genesis. Continuum 001 was not silently upgraded or reset: its original code, checkpoints and releases are preserved, and its hourly schedule is paused. Its manual workflow is retained. The earlier controlled comparison is also preserved and manual only. See the protocol for designed starting abilities, exploration, mutation bias, observation limits and the distinction between ancestry and species.

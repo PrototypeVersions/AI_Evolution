@@ -1,3 +1,7 @@
+# Current direction
+
+Symbiosis 002 is the active experiment; see [SYMBIOSIS.md](SYMBIOSIS.md). Continuum 001 is preserved with its schedule paused. The text below records the previous plans.
+
 # Research plan — updated direction
 
 The primary project is now **one persistent world**, documented in [PERSISTENT_WORLD.md](PERSISTENT_WORLD.md). The public website is an observatory, and continuation resumes the same population. The controlled comparison plan below is retained as historical context and a source of future side experiments, not the main daily process.

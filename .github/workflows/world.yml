@@ -1,7 +1,5 @@
-name: Continue the persistent world
+name: Archived Continuum 001 (manual only)
 on:
-  schedule:
-    - cron: '17 * * * *'
   workflow_dispatch:
 permissions:
   contents: write

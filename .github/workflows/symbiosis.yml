@@ -1,0 +1,57 @@
+name: Continue Symbiosis 002
+on:
+  schedule:
+    - cron: '37 * * * *'
+  workflow_dispatch:
+    inputs:
+      ticks:
+        description: 'Ticks to advance (1–5000; default 1000)'
+        required: false
+        default: '1000'
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: symbiosis-world
+  cancel-in-progress: false
+jobs:
+  continue:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: main
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: '24'
+      - run: npm test
+      - id: world
+        name: Resume the saved population
+        env:
+          SYMBIOSIS_DIRECTOR_ENABLED: ${{ vars.SYMBIOSIS_DIRECTOR_ENABLED }}
+          WORLD_TICKS: ${{ inputs.ticks || '1000' }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: node scripts/advance-symbiosis.mjs
+      - name: Preserve the complete segment before publishing
+        if: steps.world.outputs.advanced == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARCHIVE: ${{ steps.world.outputs.archive }}
+          TAG: ${{ steps.world.outputs.tag }}
+        run: |
+          node -e "const fs=require('fs');const w=require('./data/symbiosis/observatory.json');const c=w.chapters.at(-1);fs.writeFileSync('research/segment-notes.md','Persistent world '+w.id+'; segment '+w.segment+'.\n\nTicks '+c.fromTick+'–'+c.toTick+'.\n\nParent checkpoint: '+c.parentHash+'\n\nResult checkpoint: '+c.checkpointHash+'\n\nComplete event log, checkpoints, model decisions (if connected), measurements and source are included.');"
+          gh release create "$TAG" "$ARCHIVE" --target "$GITHUB_SHA" --title "World segment $TAG" --notes-file research/segment-notes.md
+      - name: Commit the new checkpoint and public observations together
+        if: steps.world.outputs.advanced == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/symbiosis/observatory.json data/symbiosis/checkpoint.json
+          git commit -m "Continue Symbiosis from its saved checkpoint"
+          git push origin HEAD:main
+  publish:
+    needs: continue
+    uses: ./.github/workflows/pages.yml
